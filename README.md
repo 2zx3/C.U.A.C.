@@ -5,3 +5,4 @@
 <h1>NOTE:</h1>
 <h2>LIBRARIES THAT WERE USED WERE MADE BY: <a href="https://github.com/DeybisMelendez/game-tools">This Guy</a></h2>
 <h1>SO PLEASE CHECK THE LINK FOR MORE INFORMATION.</h1>
+please take note that some libraries like the camera are not based on this link.
