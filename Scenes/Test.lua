@@ -4,14 +4,14 @@ local titleScene  = {}
 
 local scale = 0.1       
 local scaleSpeed = 0.5
-local griwing = true
+local growing = true
 
 lg = love.graphics
 
 -- function Scene:titleScene()
 
 function titleScene:load()
-  BG = love.graphics.newImage("Images/placeholder(1).jpg") -- change the image name lmao
+  BG = love.graphics.newImage("Sprites/placeholder(1).jpg") -- change the image name lmao
   scrnX = lg.getWidth()
   scrnY = lg.getHeight()
   dimsX, dimsY = lg.getDimensions()
@@ -34,9 +34,15 @@ if growing then
     end
 end
 
+function love.keypressed(key)
+  if key == "escape" then
+     changeScene("gametest")
+  end
+end
+
 function titleScene:draw()
   lg.draw(BG)
-  lg.print("Backshots Mania", dimsX/3.2, dimsY/4, 0, 3, 3)
+  lg.print("See You After Class", dimsX/3.2, dimsY/4, 0, 3, 3)
      local text = "Tap Anywhere to Start"
     local font = love.graphics.getFont()
     local textWidth = font:getWidth(text)
@@ -47,11 +53,12 @@ function titleScene:draw()
     love.graphics.scale(scale, scale)  
     love.graphics.printf(text, -textWidth / 2, -textHeight / 2, textWidth, "center")
     love.graphics.pop()
-    lg.print("Game made By: Juan and The Goods Pusher", dimsX/5.5, 300, 0, 2, 2)
+    lg.print("Game made By: 2zx3 & BURRR-e", dimsX/5.5, 300, 0, 2, 2)
   end
 
 function love.touchpressed(id, x, y, dx, dy, pressure)
     changeScene("gametest")
  end
+
 
 return titleScene

@@ -2,28 +2,28 @@ require "main"
 
 local test1 = {}
  -- Virtual Gamepad --
-local lovepad = require "extensions/lovepad"
+local lovepad = require "Extensions/lovepad"
 
 lovepad:setGamePad()
 -- Virtual Gamepad --
 
   -- Camera --
 
-  camera = require "extensions/camera"
+  camera = require "Extensions/camera"
 
   cam = camera()
  -- Camera -- 
 player = {}
  -- player characteristics --
 
- player.character = love.graphics.newImage("Images/placeholder.jpg")
+ player.character = love.graphics.newImage("Sprites/placeholder.jpg")
 
  Charawidth  = player.character:getWidth()
  Charaheight = player.character:getHeight()
  playerx = 400
  playery = 200
- CharaInteract = love.graphics.newImage("Images/2024-03-30.jpg")
- Map = love.graphics.newImage("Images/placeholder(1).jpg")
+ CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
+ Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
  -- player characteristics --
 
 function test1:load()
@@ -86,6 +86,12 @@ end
     cam:lookAt(playerx, playery)
   
    end
+
+   function love.keypressed(key)
+    if key == "escape" then
+       changeScene("Test")
+    end
+ end
   
  function test1:draw()
   cam:attach()
