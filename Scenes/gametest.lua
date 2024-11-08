@@ -41,17 +41,33 @@ function test1:update(dt)
    lovepad:update()
    if lovepad:isDown('Up') then
      playery = playery - 2.5
+  elseif love.keyboard.isDown('w') then
+     playery = playery - 2.5
+  elseif love.keyboard.isDown('up') then
+     playery = playery - 2.5
    end
    
    if lovepad:isDown('Down') then
+     playery = playery + 2.5
+   elseif love.keyboard.isDown('s') then
+     playery = playery + 2.5
+  elseif love.keyboard.isDown('down') then
      playery = playery + 2.5
    end
    
 if lovepad:isDown('Left') then
      playerx = playerx - 2.5
+   elseif love.keyboard.isDown('a') then
+     playerx = playerx - 2.5
+  elseif love.keyboard.isDown('left') then
+     playerx = playerx - 2.5
    end
    
 if lovepad:isDown('Right') then
+     playerx = playerx + 2.5
+   elseif love.keyboard.isDown('d') then
+     playerx = playerx + 2.5
+  elseif love.keyboard.isDown('right') then
      playerx = playerx + 2.5
 end
  
