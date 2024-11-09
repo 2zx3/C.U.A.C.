@@ -22,6 +22,8 @@ player = {}
  Charaheight = player.character:getHeight()
  playerx = 400
  playery = 200
+ playerrun = 6
+ playerrunmp = 15
  CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
  Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
  -- player characteristics --
@@ -77,7 +79,8 @@ end
    
    if lovepad:isPressed('B') then
  -- playerx = playerx - 40
- love.draw(CharaInteract)
+ playerrun = playerrunmp else
+     playerrun = 6 
    end
   
   if lovepad:isPressed('Pause') then
