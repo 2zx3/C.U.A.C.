@@ -78,7 +78,8 @@ if lovepad:isPressed('A') then
 end
    
    if lovepad:isPressed('B') then
- -- playerx = playerx - 40
+  playerrun = playerrunmp
+ elseif love.keyboard.isDown("b")
  playerrun = playerrunmp else
      playerrun = 6 
    end
