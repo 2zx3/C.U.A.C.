@@ -17,4 +17,10 @@
 
 <h1>Sprites Used:</h1>
 
-nothing here yet
+<ul>
+
+<li><a href="https://limezu.itch.io/moderninteriors">Modern interiors</a></li>
+
+adding more if i find the link again lmao
+  
+</ul>
