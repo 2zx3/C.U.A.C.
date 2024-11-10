@@ -47,13 +47,13 @@ player = {}
 
  --Charaheight = player.character:getHeight()
 
- playerx = 400
+ playerx = 0
 
- playery = 200
+ playery = 0
 
- playerrun = 6
+ playerrun = 2
 
- playerrunmp = 15
+ playerrunmp = 4
 
  --CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
 
@@ -76,7 +76,7 @@ function test1:load()
 
   camera = require "Extensions/camera"
 
-  
+
 -- DO NOT TOUCH THIS YET, MAY CAUSE CRASHES
 --  camera:zoom(2)
 --  camera.scale = zoom
@@ -303,7 +303,7 @@ if lovepad:isDown('B') then
 
   playerrun = playerrunmp else
 
-      playerrun = 6 
+      playerrun = 2
 
 
 
@@ -324,6 +324,7 @@ end
     player.anim:gotoFrame(2)
 
   end
+  
 
   cam:lookAt(playerx, playery)
 
@@ -355,7 +356,6 @@ end
 
   cam:attach()
 
-    gameMap:draw()
 
     gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
     gameMap:drawLayer(gameMap.layers["Tile Layer 2"])

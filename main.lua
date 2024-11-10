@@ -1,3 +1,5 @@
+
+
 function love.load()
   Scene = require("Scenes/Test")
  if Scene.load then Scene:load()
