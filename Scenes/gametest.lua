@@ -28,11 +28,8 @@ lovepad:setGamePad()
 
 
 
-  camera = require "Extensions/camera"
 
-
-
-  cam = camera()
+  
 
  -- Camera -- 
 
@@ -75,6 +72,18 @@ player = {}
 
 
 function test1:load()
+
+
+  camera = require "Extensions/camera"
+
+  
+-- DO NOT TOUCH THIS YET, MAY CAUSE CRASHES
+--  camera:zoom(2)
+--  camera.scale = zoom
+--  camera.scale = camera.scale * 3
+
+
+  cam = camera()
 
   wf = require 'windfield'
   world = wf.newWorld(0, 0)
@@ -316,6 +325,8 @@ end
 
   end
 
+  cam:lookAt(playerx, playery)
+
   world:update(dt)
 
   player.anim:update(dt)
@@ -324,7 +335,7 @@ end
 
 
 
-  cam:lookAt(playerx, playery)
+ 
 
     
 
@@ -345,6 +356,10 @@ end
   cam:attach()
 
     gameMap:draw()
+
+    gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
+    gameMap:drawLayer(gameMap.layers["Tile Layer 2"])
+    gameMap:drawLayer(gameMap.layers["Tile Layer 3"])
 
    -- love.graphics.draw(player.character, playerx, playery, 0, 1, 1,  Charawidth/2, Charaheight/2)
 
