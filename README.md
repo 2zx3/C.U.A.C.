@@ -1,8 +1,8 @@
 <h1>TO DO:</h1>
 <h3>
-- Fix Camera Zoom
-- Add Collision
-- fix player stuck on bottom right corner
+<br>- Fix Camera Zoom
+<br>- Add Collision
+<br>- fix player stuck on bottom right corner
 </h3>
 <h6>Dis repo is for the sprites and source code and other shit</h6>
 
