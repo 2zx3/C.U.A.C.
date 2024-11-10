@@ -1,8 +1,20 @@
+<h1>See You After Class</h1>
+<p>A fun project tasked to us by our teacher but we chose to manually code the game without using any game making app because why not.</p>
 
-</h3>
-<h6>Dis repo is for the sprites and source code and other shit</h6>
+<br>
 
-<h1>NOTE:</h1>
-<h2>LIBRARIES THAT WERE USED WERE MADE BY: <a href="https://github.com/DeybisMelendez/game-tools">This Guy</a></h2>
-<h1>SO PLEASE CHECK THE LINK FOR MORE INFORMATION.</h1>
-please take note that some libraries like the camera are not based on this link.
+<h1>Libraries Used:</h1>
+<ul>
+
+<li><a href="https://github.com/karai17/Simple-Tiled-Implementation">Simple Tiled Implementation</a></li>
+<li><a href="https://github.com/a327ex/windfield">Windfield</a></li>
+<li><a href="https://github.com/kikito/anim8">Anim8</a></li>
+<li><a href="https://github.com/vrld/hump">HUMP</a></li>
+<li><a href="https://github.com/DeybisMelendez/lovepad">Lovepad</a></li>
+<li><a href="https://github.com/tesselode/roomy">Roomy</a></li>
+  
+</ul>
+
+<h1>Sprites Used:</h1>
+
+nothing here yet
