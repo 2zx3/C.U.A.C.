@@ -19,7 +19,7 @@
 
 <ul>
 
-<li><a href="https://limezu.itch.io/moderninteriors">Modern interiors</a></li>
+<li><a href="https://limezu.itch.io/">Modern interiors</a></li>
 
 adding more if i find the link again lmao
   
