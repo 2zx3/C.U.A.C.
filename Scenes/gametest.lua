@@ -1,6 +1,6 @@
 require "main" 
 
-
+local wf = require 'windfield'
 
 local sti = require "sti"
 
@@ -47,14 +47,6 @@ player = {}
 
  --Charaheight = player.character:getHeight()
 
- playerx = 0
-
- playery = 0
-
- playerrun = 2
-
- playerrunmp = 4
-
  --CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
 
  --Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
@@ -85,10 +77,12 @@ function test1:load()
 
   cam = camera()
 
+
+
   wf = require 'windfield'
   world = wf.newWorld(0, 0)
 
-  anim8 = require 'Extensions/anim8'
+
 
   love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -98,6 +92,20 @@ function test1:load()
 
 
   player = {}
+
+
+  player.collider = world:newRectangleCollider(0, 0, 14, 20)
+  player.collider:setFixedRotation(true)
+
+
+  
+  playerx = 0
+
+  playery = 0
+
+  playerrun = 100
+
+  playerrunmp = 150
 
   player.spriteSheet = love.graphics.newImage('Sprites/player.png')
 
@@ -120,7 +128,19 @@ function test1:load()
   player.anim = player.animations.up
 
 
+  hitbox = {}
 
+  if gameMap.layers["hitbox"] then
+    
+    for i, obj in pairs(gameMap.layers["hitbox"].objects) do
+      
+      local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
+      wall:setType('static')
+      table.insert(hitbox, wall)
+
+    end
+
+  end
  
 
 lovepad:new{
@@ -149,35 +169,38 @@ function test1:update(dt)
 
     local isMoving = false
 
+    local vx = 0
+    local vy = 0
+
 
 
    if lovepad:isDown('Up') then
 
-     playery = playery - playerrun
+    vy = playerrun * -1
 
-     player.anim = player.animations.up
+    player.anim = player.animations.up
 
-        isMoving = true
+    sMoving = true
 
 
 
   elseif love.keyboard.isDown('w') then
 
-     playery = playery - playerrun
+    vy = playerrun * -1
 
-     player.anim = player.animations.up
+    player.anim = player.animations.up
 
-     isMoving = true
+    isMoving = true
 
      
 
   elseif love.keyboard.isDown('up') then
 
-     playery = playery - playerrun
+    vy = playerrun * -1
 
-     player.anim = player.animations.up
+    player.anim = player.animations.up
 
-     isMoving = true
+    isMoving = true
 
    end
 
@@ -185,31 +208,31 @@ function test1:update(dt)
 
    if lovepad:isDown('Down') then
 
-     playery = playery + playerrun
+    vy = playerrun
 
-     player.anim = player.animations.down
+    player.anim = player.animations.down
 
-     isMoving = true
+    isMoving = true
 
 
 
    elseif love.keyboard.isDown('s') then
 
-     playery = playery + playerrun
+    vy = playerrun
 
-     player.anim = player.animations.down
+    player.anim = player.animations.down
 
-     isMoving = true
+    isMoving = true
 
 
 
   elseif love.keyboard.isDown('down') then
 
-     playery = playery + playerrun
+    vy = playerrun
 
-     player.anim = player.animations.down
+    player.anim = player.animations.down
 
-     isMoving = true
+    isMoving = true
 
 
 
@@ -219,31 +242,31 @@ function test1:update(dt)
 
 if lovepad:isDown('Left') then
 
-     playerx = playerx - playerrun
+    vx = playerrun * -1
 
-     player.anim = player.animations.left
+    player.anim = player.animations.left
 
-     isMoving = true
+    isMoving = true
 
 
 
    elseif love.keyboard.isDown('a') then
 
-     playerx = playerx - playerrun
+    vx = playerrun * -1
 
-     player.anim = player.animations.left
+    player.anim = player.animations.left
 
-     isMoving = true
+    isMoving = true
 
 
 
   elseif love.keyboard.isDown('left') then
 
-     playerx = playerx - playerrun
+    vx = playerrun * -1
 
-     player.anim = player.animations.left
+    player.anim = player.animations.left
 
-     isMoving = true
+    isMoving = true
 
 
 
@@ -253,31 +276,31 @@ if lovepad:isDown('Left') then
 
 if lovepad:isDown('Right') then
 
-     playerx = playerx + playerrun
+    vx = playerrun
 
-     player.anim = player.animations.right
+    player.anim = player.animations.right
 
-     isMoving = true
+    isMoving = true
 
 
 
    elseif love.keyboard.isDown('d') then
 
-     playerx = playerx + playerrun
+    vx = playerrun
 
-     player.anim = player.animations.right
+    player.anim = player.animations.right
 
-     isMoving = true
+    isMoving = true
 
 
 
   elseif love.keyboard.isDown('right') then
 
-     playerx = playerx + playerrun
+    vx = playerrun
 
-     player.anim = player.animations.right
+    player.anim = player.animations.right
 
-     isMoving = true
+    isMoving = true
 
 
 
@@ -303,8 +326,7 @@ if lovepad:isDown('B') then
 
   playerrun = playerrunmp else
 
-      playerrun = 2
-
+      playerrun = 100
 
 
 end
@@ -318,6 +340,8 @@ end
     end
 
 
+    player.collider:setLinearVelocity(vx, vy)
+
 
   if isMoving == false then
 
@@ -326,19 +350,15 @@ end
   end
   
 
-  cam:lookAt(playerx, playery)
+  cam:lookAt(playerx * 3, playery * 3)
 
   world:update(dt)
 
+  playerx = player.collider:getX() - 9
+  playery = player.collider:getY() - 13
+
   player.anim:update(dt)
 
-
-
-
-
- 
-
-    
 
     function love.keypressed(key)
 
@@ -356,10 +376,12 @@ end
 
   cam:attach()
 
+    love.graphics.scale(3, 3)
+
 
     gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
     gameMap:drawLayer(gameMap.layers["Tile Layer 2"])
-    gameMap:drawLayer(gameMap.layers["Tile Layer 3"])
+    --gameMap:drawLayer(gameMap.layers["Tile Layer 3"])
 
    -- love.graphics.draw(player.character, playerx, playery, 0, 1, 1,  Charawidth/2, Charaheight/2)
 

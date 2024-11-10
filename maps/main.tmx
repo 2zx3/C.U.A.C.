@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="16">
+ <editorsettings>
+  <export target="main.lua" format="lua"/>
+ </editorsettings>
  <tileset firstgid="1" name="bofhblk" tilewidth="16" tileheight="16" tilecount="1000" columns="20">
   <image source="../tilesets/bofhblk.png" width="320" height="800"/>
+  <tile id="999">
+   <objectgroup draworder="index" id="3">
+    <object id="2" x="-0.00390625" y="-0.0117188" width="16.0664" height="16.0117"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="1001" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
   <image source="../tilesets/basictiles.png" width="128" height="240"/>
@@ -12,9 +20,6 @@
  <tileset firstgid="1217" name="doors" tilewidth="16" tileheight="16" tilecount="3072" columns="64">
   <image source="../tilesets/doors.png" width="1024" height="768"/>
  </tileset>
- <layer id="3" name="Tile Layer 3" width="30" height="30">
-  <data encoding="csv"/>
- </layer>
  <layer id="1" name="Tile Layer 1" width="30" height="30">
   <data encoding="csv">
    <chunk x="-16" y="-48" width="16" height="16">
@@ -563,4 +568,10 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="4" name="hitbox">
+  <object id="12" x="-96" y="-192" width="16" height="336"/>
+  <object id="13" x="-80" y="-192" width="160" height="16"/>
+  <object id="14" x="80" y="-192" width="16" height="336"/>
+  <object id="15" x="-80" y="128" width="160" height="16"/>
+ </objectgroup>
 </map>
