@@ -1,5 +1,9 @@
-<h1>LMOA</h1>
-<h3>First game lets goooooo</h3>
+<h1>TO DO:</h1>
+<h3>
+- Fix Camera Zoom
+- Add Collision
+- fix player stuck on bottom right corner
+</h3>
 <h6>Dis repo is for the sprites and source code and other shit</h6>
 
 <h1>NOTE:</h1>

@@ -60,7 +60,7 @@ player = {}
 
  --CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
 
- Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
+ --Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
 
  player.spriteSheet = love.graphics.newImage('Sprites/player.png')
 
@@ -76,12 +76,16 @@ player = {}
 
 function test1:load()
 
-
+  wf = require 'windfield'
+  world = wf.newWorld(0, 0)
 
   anim8 = require 'Extensions/anim8'
 
   love.graphics.setDefaultFilter("nearest", "nearest")
 
+
+  sti = require 'sti'
+  gameMap = sti("maps/main.lua")
 
 
   player = {}
@@ -312,7 +316,7 @@ end
 
   end
 
-
+  world:update(dt)
 
   player.anim:update(dt)
 
@@ -340,13 +344,16 @@ end
 
   cam:attach()
 
-    love.graphics.draw(Map)
+    gameMap:draw()
 
    -- love.graphics.draw(player.character, playerx, playery, 0, 1, 1,  Charawidth/2, Charaheight/2)
 
-    player.anim:draw(player.spriteSheet, playerx, playery, nil, 6, nil, 6, 9)
+    player.anim:draw(player.spriteSheet, playerx, playery, nil, 1.5)
+    
+    world:draw()
 
   cam:detach()
+
 
   lovepad:draw()
 
