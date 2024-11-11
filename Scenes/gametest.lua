@@ -178,7 +178,18 @@ player.animations = {}
 
     end
 
+ if gameMap.layer["doors"] then
 
+    
+    for i, obj in pairs(gameMap.layers["doors"].objects) do
+
+            local door = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
+
+      wall:setType('static')
+
+      table.insert(doors, door)
+
+    end
 
   end
 
