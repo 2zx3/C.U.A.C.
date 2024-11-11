@@ -556,6 +556,63 @@ door:setType('static')
 
 
 
+world:addCollisionClass('F1R3')
+
+door = world:newRectangleCollider(-640, -1216, 16, 16)
+
+door:setCollisionClass("F1R3")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F1R3_ret')
+
+door = world:newRectangleCollider(-640, -1696, 32, 16)
+
+door:setCollisionClass("F1R3_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F1R2')
+
+door = world:newRectangleCollider(-384, -1216, 16, 16)
+
+door:setCollisionClass("F1R2")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F1R2_ret')
+
+door = world:newRectangleCollider(-1168, -1696, 32, 16)
+
+door:setCollisionClass("F1R2_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F1R1')
+
+door = world:newRectangleCollider(-128, -1216, 16, 16)
+
+door:setCollisionClass("F1R1")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F1R1_ret')
+
+door = world:newRectangleCollider(-1488, -1696, 32, 16)
+
+door:setCollisionClass("F1R1_ret")
+
+door:setType('static')
 
 
 
@@ -954,6 +1011,32 @@ end
   if playercollider:enter('F1R3_ret') then
     
     playercollider:setPosition(-633, -1191)
+
+  end
+
+  if playercollider:enter('F1R2') then
+    
+    playercollider:setPosition(-1152, -1712)
+
+  end
+
+
+  if playercollider:enter('F1R2_ret') then
+    
+    playercollider:setPosition(-376, -1191)
+
+  end
+
+  if playercollider:enter('F1R1') then
+    
+    playercollider:setPosition(-1472, -1712)
+
+  end
+
+
+  if playercollider:enter('F1R1_ret') then
+    
+    playercollider:setPosition(-118, -1191)
 
   end
 
