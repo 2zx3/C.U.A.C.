@@ -12,7 +12,7 @@
 <li><a href="https://github.com/vrld/hump">HUMP</a></li>
 <li><a href="https://github.com/DeybisMelendez/lovepad">Lovepad</a></li>
 <li><a href="https://github.com/tesselode/roomy">Roomy</a></li>
-  
+  <li><a href="https://github.com/gustavostuff/dialove/tree/main">Dialove</a></li>
 </ul>
 
 <h1>Sprites used were made by:</h1>
