@@ -24,6 +24,18 @@
 <li><a href="https://opengameart.org/content/tiny-16-basic">Lanea Zimmerman</a></li>
 <li><a href="https://freegamer.blogspot.com/2010/06/bofh-servers-under-siege.html">BOFH</a></li>
 
-adding more if i find the link again lmao
+
   
 </ul>
+<h1>Sounds used:</h1>
+<ul>
+
+<li><a href="https://www.chosic.com/download-audio/30490/">Spring Flowers</a></li>
+<li><a href="https://www.chosic.com/download-audio/25499/">A really dark alley</a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+
+
+  
+</ul>
+
