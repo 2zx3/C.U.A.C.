@@ -556,6 +556,11 @@ door:setType('static')
 
 
 
+
+
+
+
+
 function test1:load()
 
 
@@ -934,13 +939,23 @@ end
 
   if playercollider:enter('door') then
 
+      playercollider:setPosition(-4,-802)
+
+  end
 
 
-        playercollider:setPosition(-4,-802)
+  if playercollider:enter('F1R3') then
+    
+    playercollider:setPosition(-624, -1712)
+
+  end
 
 
+  if playercollider:enter('F1R3_ret') then
+    
+    playercollider:setPosition(-633, -1191)
 
-    end
+  end
 
 end
 
@@ -958,7 +973,7 @@ end
 
     gameMap:drawLayer(gameMap.layers["Tile Layer 2"])
 
-    --gameMap:drawLayer(gameMap.layers["Tile Layer 3"])
+    gameMap:drawLayer(gameMap.layers["Tile Layer 3"])
 
    -- love.graphics.draw(player.character, playerx, playery, 0, 1, 1,  Charawidth/2, Charaheight/2)
 
