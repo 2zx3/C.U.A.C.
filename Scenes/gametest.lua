@@ -514,6 +514,7 @@ hitbox = {}
 
   end
 
+  
 
 
   -- doors = {}
@@ -620,6 +621,23 @@ door:setType('static')
 
 function test1:load()
 
+  sounds = {}
+
+  sounds.horror = love.audio.newSource("sounds/horror.mp3", "stream")
+  sounds.peace = love.audio.newSource("sounds/peace.mp3", "stream")
+  sounds.footsteps = love.audio.newSource("sounds/footsteps.mp3", "stream")
+
+  sounds.peace:setLooping(true)
+
+  sounds.footsteps:setLooping(true)
+  sounds.peace:setVolume(0.5)
+
+  sounds.peace:setVolume(0.2)
+
+  sounds.peace:play()
+  
+
+
 
 
 lovepad:new{
@@ -676,6 +694,7 @@ function test1:update(dt)
 
 
 
+
    lovepad:update()
 
  dialogManager:update(dt)
@@ -692,7 +711,10 @@ function test1:update(dt)
 
 
 
+   local walking = false
 
+   
+  
 
    if lovepad:isDown('Up') then
 
@@ -707,6 +729,7 @@ function test1:update(dt)
 
 
     isMoving = true
+    walking = true
 
 
 
@@ -723,7 +746,7 @@ function test1:update(dt)
 
 
     isMoving = true
-
+    walking = true
   
 
   elseif love.keyboard.isDown('up') then
@@ -739,7 +762,7 @@ function test1:update(dt)
 
 
     isMoving = true
-
+    walking = true
   
 
    end
@@ -759,7 +782,7 @@ function test1:update(dt)
 
 
     isMoving = true
-
+    walking = true
 
 
    elseif love.keyboard.isDown('s') then
@@ -775,7 +798,7 @@ function test1:update(dt)
   
 
     isMoving = true
-
+    walking = true
 
 
   elseif love.keyboard.isDown('down') then
@@ -791,7 +814,7 @@ function test1:update(dt)
 
 
     isMoving = true
-
+    walking = true
   
 
    end
@@ -811,7 +834,7 @@ if lovepad:isDown('Left') then
 
 
     isMoving = true
-
+    walking = true
 
 
    elseif love.keyboard.isDown('a') then
@@ -827,7 +850,7 @@ if lovepad:isDown('Left') then
 
 
     isMoving = true
-
+    walking = true
 
 
   elseif love.keyboard.isDown('left') then
@@ -843,7 +866,7 @@ if lovepad:isDown('Left') then
   
 
     isMoving = true
-
+    walking = true
 
 
    end
@@ -863,7 +886,7 @@ if lovepad:isDown('Right') then
 
 
     isMoving = true
-
+    walking = true
 
 
    elseif love.keyboard.isDown('d') then
@@ -879,7 +902,7 @@ if lovepad:isDown('Right') then
   
 
     isMoving = true
-
+    walking = true
 
 
   elseif love.keyboard.isDown('right') then
@@ -895,7 +918,7 @@ if lovepad:isDown('Right') then
 
 
     isMoving = true
-
+    walking = true
 
 
 end
@@ -953,6 +976,14 @@ end
     player.anim:gotoFrame(2)
 
 
+
+  end
+
+  if walking == true then
+      
+    sounds.footsteps:play() else
+
+      sounds.footsteps:stop()
 
   end
 
