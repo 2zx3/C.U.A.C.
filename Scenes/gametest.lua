@@ -872,7 +872,7 @@ end
 
 
 
-    changeScene("Test")
+    changeScene("pazmenu")
 
 
 
