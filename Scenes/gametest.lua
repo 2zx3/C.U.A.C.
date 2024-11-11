@@ -178,6 +178,8 @@ player.animations = {}
 
     end
 
+end
+
  if gameMap.layer["doors"] then
 
     
