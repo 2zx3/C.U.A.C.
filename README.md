@@ -15,11 +15,14 @@
   
 </ul>
 
-<h1>Sprites Used:</h1>
+<h1>Sprites used were made by:</h1>
 
 <ul>
 
-<li><a href="https://limezu.itch.io/">Modern interiors</a></li>
+<li><a href="https://limezu.itch.io/">Limezu</a></li>
+<li><a href="https://opengameart.org/content/doors">SpiderDave</a></li>
+<li><a href="https://opengameart.org/content/tiny-16-basic">Lanea Zimmerman</a></li>
+<li><a href="https://freegamer.blogspot.com/2010/06/bofh-servers-under-siege.html">BOFH</a></li>
 
 adding more if i find the link again lmao
   
