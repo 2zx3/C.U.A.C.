@@ -1,221 +1,28 @@
 require "main" 
 
-
-
-
-
-
-
 local wf = require 'windfield'
-
-
-
-
-
-
 
 local sti = require "sti"
 
-
-
-
-
-
-
 local Dialove = require 'Extensions/Dialove'
-
-
-
-
-
 
 
 local test1 = {}
 
 
-
-
-
-
-
- -- Virtual Gamepad --
-
-
-
-
-
-
-
 local lovepad = require "Extensions/lovepad"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local anim8 = require 'Extensions/anim8'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 lovepad:setGamePad()
 
 
-
-
-
-
-
--- Virtual Gamepad --
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  -- Camera --
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
- -- Camera -- 
-
-
-
-
-
-
-
 player = {}
-
-
-
-
-
-
-
- -- player characteristics --
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   camera = require "Extensions/camera"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- DO NOT TOUCH THIS YET, MAY CAUSE CRASHES
-
-
-
---  camera:zoom(2)
-
-
-
---  camera.scale = zoom
-
-
-
---  camera.scale = camera.scale * 3
-
-
-
-
-
-
-
-
-
-
-
   cam = camera()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   wf = require 'windfield'
@@ -226,61 +33,18 @@ player = {}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   love.graphics.setDefaultFilter("nearest", "nearest")
-
-
-
-
-
-
-
-
-
 
 
   sti = require 'sti'
 
 
-
   gameMap = sti("maps/main.lua")
-
-
-
-
-
-
-
-
-
 
 
   playercollider = world:newRectangleCollider(0, 0, 14, 20)
 
   playercollider:setFixedRotation(true)
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
 
@@ -300,252 +64,60 @@ map1y = -500
 
   player.spriteSheet = love.graphics.newImage('Sprites/player.png')
 
-
-
-
-
-
-
   player.grid = anim8.newGrid( 12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight() )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   player.animations = {}
 
-
-
-
-
-
-
   player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2 )
-
-
-
-
-
-
 
   player.animations.left = anim8.newAnimation( player.grid('1-4', 2), 0.2 )
 
-
-
-
-
-
-
   player.animations.right = anim8.newAnimation( player.grid('1-4', 3), 0.2 )
-
-
-
-
-
-
 
   player.animations.up = anim8.newAnimation( player.grid('1-4', 4), 0.2 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   player.anim = player.animations.up
-
-
-
-
-
-
-
- --player.character = love.graphics.newImage("Sprites/placeholder.jpg")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- Charawidth  = player.character:getWidth()
-
-
-
-
-
-
-
- --Charaheight = player.character:getHeight()
-
-
-
-
-
-
-
- --CharaInteract = love.graphics.newImage("Sprites/2024-03-30.jpg")
-
-
-
-
-
-
-
- --Map = love.graphics.newImage("Sprites/placeholder(1).jpg")
-
-
-
-
-
-
 
  player.spriteSheet = love.graphics.newImage('Sprites/player.png')
 
-
-
-
-
-
-
  player.grid = anim8.newGrid( 12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight() )
-
-
 
  -- dialog --
 
-
-
 dialogManager = Dialove.init({
-
-
 
   font = love.graphics.newFont('fonts/press-start-2p/PressStart2P-Regular.ttf', 16)
 
-
-
   })
-
-
-
-
-
-
 
 dialogManager:show({
 
-
-
   text = "Oh No! it seems like i forgot my diary, I should go back and take it.",
-
-
 
   title = 'Lucas',
 
-
-
-  -- image = love.graphics.newImage('Sprites/pic1place.jpeg')
-
-
-
 })
 
-
-
 -- dialog --
-
 
 
  -- player characteristics --
 
 hitbox = {}
 
-
-
   if gameMap.layers["hitbox"] then
 
-
-
     for i, obj in pairs(gameMap.layers["hitbox"].objects) do
-
-
-
      
-
       local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
-
-
 
       wall:setType('static')
 
-
-
       table.insert(hitbox, wall)
-
-
 
     end
 
   end
-
-  
-
-
-  -- doors = {}
-
--- 
-
---   if gameMap.layers["doors"] then
-
---   
-
---     for i, obj in pairs(gameMap.layers["doors"].objects) do
-
--- 
-
---       local doer = world:newRectangleCollider(obj.x, obj.y - 15, obj.width, obj.height)
-
--- 
-
---       doer:setType('static')
-
--- 
-
---       table.insert(doors, doer)
-
--- 
-
---     end
-
---   end
-
--- 
 
 world:addCollisionClass('door')
 
@@ -615,6 +187,336 @@ door:setCollisionClass("F1R1_ret")
 
 door:setType('static')
 
+-- SECOND FLOOR
+
+world:addCollisionClass('F2')
+
+door = world:newRectangleCollider(-16, -1520, 16, 16)
+
+door:setCollisionClass("F2")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2_ret')
+
+door = world:newRectangleCollider(464, -2656, 32, 16)
+
+door:setCollisionClass("F2_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R1')
+
+door = world:newRectangleCollider(320, -3104, 16, 16)
+
+door:setCollisionClass("F2R1")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R1_ret')
+
+door = world:newRectangleCollider(-784, -2416, 32, 16)
+
+door:setCollisionClass("F2R1_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R2')
+
+door = world:newRectangleCollider(80, -3104, 16, 16)
+
+door:setCollisionClass("F2R2")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R2_ret')
+
+door = world:newRectangleCollider(-1072, -2416, 32, 16)
+
+door:setCollisionClass("F2R2_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R3')
+
+door = world:newRectangleCollider(-96, -3104, 16, 16)
+
+door:setCollisionClass("F2R3")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R3_ret')
+
+door = world:newRectangleCollider(-1648, -2416, 32, 16)
+
+door:setCollisionClass("F2R3_ret")
+
+door:setType('static')
+
+
+
+
+world:addCollisionClass('F2R4')
+
+door = world:newRectangleCollider(-448, -3104, 16, 16)
+
+door:setCollisionClass("F2R4")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R4_ret')
+
+door = world:newRectangleCollider(-1072, -2896, 32, 16)
+
+door:setCollisionClass("F2R4_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R5')
+
+door = world:newRectangleCollider(16, -3504, 16, 16)
+
+door:setCollisionClass("F2R5")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R5_ret')
+
+door = world:newRectangleCollider(-1568, -2896, 32, 16)
+
+door:setCollisionClass("F2R5_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R6')
+
+door = world:newRectangleCollider(-448.00, -3504, 16, 16)
+
+door:setCollisionClass("F2R6")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F2R6_ret')
+
+door = world:newRectangleCollider(-1744, -3376, 32, 16)
+
+door:setCollisionClass("F2R6_ret")
+
+door:setType('static')
+
+-- THIRD FLOOR
+
+world:addCollisionClass('F3')
+
+door = world:newRectangleCollider(400, -3504, 16, 16)
+
+door:setCollisionClass("F3")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3_ret')
+
+door = world:newRectangleCollider(-2000, 416, 32, 16)
+
+door:setCollisionClass("F3_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R1')
+
+door = world:newRectangleCollider(-1776, 224, 16, 16)
+
+door:setCollisionClass("F3R1")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R1_ret')
+
+door = world:newRectangleCollider(-1488, -816, 32, 16)
+
+door:setCollisionClass("F3R1_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R2')
+
+door = world:newRectangleCollider(-1904, 224, 16, 16)
+
+door:setCollisionClass("F3R2")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R2_ret')
+
+door = world:newRectangleCollider(-1872, -816, 32, 16)
+
+door:setCollisionClass("F3R2_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R3')
+
+door = world:newRectangleCollider(-2080, 224, 16, 16)
+
+door:setCollisionClass("F3R3")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R3_ret')
+
+door = world:newRectangleCollider(-2544, -816, 32, 16)
+
+door:setCollisionClass("F3R3_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R4')
+
+door = world:newRectangleCollider(-2208, 224, 16, 16)
+
+door:setCollisionClass("F3R4")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R4_ret')
+
+door = world:newRectangleCollider(-3008, -816, 32, 16)
+
+door:setCollisionClass("F3R4_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R5')
+
+door = world:newRectangleCollider(-1776, -16, 16, 16)
+
+door:setCollisionClass("F3R5")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R5_ret')
+
+door = world:newRectangleCollider(-1568, -1296, 32, 16)
+
+door:setCollisionClass("F3R5_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R6')
+
+door = world:newRectangleCollider(-1904, -16, 16, 16)
+
+door:setCollisionClass("F3R6")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R6_ret')
+
+door = world:newRectangleCollider(-1952, -1296, 32, 16)
+
+door:setCollisionClass("F3R6_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R7')
+
+door = world:newRectangleCollider(-2080, -16, 16, 16)
+
+door:setCollisionClass("F3R7")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R7_ret')
+
+door = world:newRectangleCollider(-2352, -1296, 32, 16)
+
+door:setCollisionClass("F3R7_ret")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R8')
+
+door = world:newRectangleCollider(-2208, -16, 16, 16)
+
+door:setCollisionClass("F3R8")
+
+door:setType('static')
+
+
+
+world:addCollisionClass('F3R8_ret')
+
+door = world:newRectangleCollider(-2928, -1296, 32, 16)
+
+door:setCollisionClass("F3R8_ret")
+
+door:setType('static')
+
+
+-- DO NOT TOUCH THIS PLEASE!!!!!
+--world:addCollisionClass('end')
+
+--door = world:newRectangleCollider(400, -3504, 16, 16)
+
+--door:setCollisionClass("end")
+
+--door:setType('static')
 
 
 
@@ -626,107 +528,53 @@ function test1:load()
   sounds.horror = love.audio.newSource("sounds/horror.mp3", "stream")
   sounds.peace = love.audio.newSource("sounds/peace.mp3", "stream")
   sounds.footsteps = love.audio.newSource("sounds/footsteps.mp3", "stream")
+  sounds.footsteps2 = love.audio.newSource("sounds/footsteps2.mp3", "static")
 
   sounds.peace:setLooping(true)
+  sounds.horror:setLooping(true)
 
   sounds.footsteps:setLooping(true)
-  sounds.peace:setVolume(0.5)
-
-  sounds.peace:setVolume(0.2)
+  sounds.footsteps2:setLooping(true)
+  sounds.peace:setVolume(0.8)
 
   sounds.peace:play()
   
 
-
-
-
 lovepad:new{
-
-
-
-
-
-
 
 text = "Pause",
 
-
-
-
-
-
-
 x = 380,
-
-
-
-
-
-
 
 y = 50,
 
-
-
-
-
-
-
 radius = 10,
-
-
-
-
-
-
 
  }
 
-
-
 end
 
-
-
-
-
 function test1:update(dt)
-
-
-
 
    lovepad:update()
 
  dialogManager:update(dt)
 
-
-
     local isMoving = false
-
-
 
     local vx = 0
 
     local vy = 0
 
-
-
    local walking = false
 
+
    
-  
-
    if lovepad:isDown('Up') then
-
-
 
     vy = playerrun * -1
 
-
-
     player.anim = player.animations.up
-
-
 
     isMoving = true
     walking = true
@@ -735,34 +583,24 @@ function test1:update(dt)
 
   elseif love.keyboard.isDown('w') then
 
-
-
     vy = playerrun * -1
-
-
 
     player.anim = player.animations.up
 
-
-
     isMoving = true
     walking = true
+
   
 
   elseif love.keyboard.isDown('up') then
 
-
-
     vy = playerrun * -1
-
-
 
     player.anim = player.animations.up
 
-
-
     isMoving = true
     walking = true
+
   
 
    end
@@ -771,99 +609,67 @@ function test1:update(dt)
 
    if lovepad:isDown('Down') then
 
-
-
     vy = playerrun
-
-
 
     player.anim = player.animations.down
 
-
-
     isMoving = true
     walking = true
+
 
 
    elseif love.keyboard.isDown('s') then
 
-
-
     vy = playerrun
-
-
 
     player.anim = player.animations.down
 
-  
-
     isMoving = true
     walking = true
+
 
 
   elseif love.keyboard.isDown('down') then
 
-
-
     vy = playerrun
-
-
 
     player.anim = player.animations.down
 
-
-
     isMoving = true
     walking = true
+ 
   
 
    end
 
 
-
 if lovepad:isDown('Left') then
-
-
 
     vx = playerrun * -1
 
-
-
     player.anim = player.animations.left
-
-
 
     isMoving = true
     walking = true
+ 
 
 
    elseif love.keyboard.isDown('a') then
 
-
-
     vx = playerrun * -1
 
-
-
     player.anim = player.animations.left
-
-
 
     isMoving = true
     walking = true
 
 
+
   elseif love.keyboard.isDown('left') then
-
-
 
     vx = playerrun * -1
 
-
-
     player.anim = player.animations.left
-
-  
 
     isMoving = true
     walking = true
@@ -875,50 +681,35 @@ if lovepad:isDown('Left') then
 
 if lovepad:isDown('Right') then
 
-
-
     vx = playerrun
-
-  
 
     player.anim = player.animations.right
 
-
-
     isMoving = true
     walking = true
+ 
 
 
    elseif love.keyboard.isDown('d') then
 
-
-
     vx = playerrun
-
-
 
     player.anim = player.animations.right
 
-  
-
     isMoving = true
     walking = true
+ 
 
 
   elseif love.keyboard.isDown('right') then
 
-
-
     vx = playerrun
-
-
 
     player.anim = player.animations.right
 
-
-
     isMoving = true
     walking = true
+
 
 
 end
@@ -937,8 +728,6 @@ end
 
 if lovepad:isDown('B') then
 
-
-
    playerrun = 150
 
   elseif love.keyboard.isDown("b") then
@@ -947,35 +736,23 @@ if lovepad:isDown('B') then
 
     playerrun = 100
 
-
-
 end
 
  
 
   if lovepad:isPressed('Pause') then
 
-
-
     changeScene("pazmenu")
-
-
 
     end
 
- 
 
     playercollider:setLinearVelocity(vx, vy)
 
 
-
   if isMoving == false then
 
-
-
     player.anim:gotoFrame(2)
-
-
 
   end
 
@@ -987,43 +764,38 @@ end
 
   end
 
+  --if floor2 == true and foot2 == true then 
+
+   -- sounds.footsteps:setVolume(0.0)
+   -- sounds.footsteps:stop()
+   -- sounds.footsteps2:play() else
+
+    --  sounds.footsteps2:stop()
+    --  sounds.footsteps:setVolume(1)
+
+  --end
 
 
   cam:lookAt(playerx * 3, playery * 3)
 
-
-
   world:update(dt)
-
-
 
   playerx = playercollider:getX() - 9
 
   playery = playercollider:getY() - 13
 
-
-
   player.anim:update(dt)
-
-
 
     function love.keypressed(key)
 
-
-
     if key == "escape" then
-
-   
 
        changeScene("Test")
 
-   
-
     end
 
     end
 
-    
 
   if playercollider:enter('door') then
 
@@ -1071,12 +843,232 @@ end
 
   end
 
+ -- SECOND FLOOR
+
+ if playercollider:enter('F2') then
+    
+  playercollider:setPosition(448, -2640)
+  
+  sounds.peace:stop()
+
+  end
+
+
+  if playercollider:enter('F2_ret') then
+  
+  playercollider:setPosition(0, -1488)
+
+  sounds.peace:play()
+
+  end
+
+  if playercollider:enter('F2R1') then
+    
+    playercollider:setPosition(-768, -2432)
+
+  end
+
+
+  if playercollider:enter('F2R1_ret') then
+    
+    playercollider:setPosition(328, -3072.18)
+
+  end
+
+  if playercollider:enter('F2R2') then
+    
+    playercollider:setPosition(-1056, -2432)
+
+  end
+
+
+  if playercollider:enter('F2R2_ret') then
+    
+    playercollider:setPosition(88.25, -3072.18)
+
+  end
+
+  if playercollider:enter('F2R3') then
+    
+    playercollider:setPosition(-1632, -2432)
+
+  end
+
+
+  if playercollider:enter('F2R3_ret') then
+    
+    playercollider:setPosition(-89, -3072.18)
+
+  end
+
+  if playercollider:enter('F2R4') then
+    
+    playercollider:setPosition(-1056, -2912)
+
+  end
+
+
+  if playercollider:enter('F2R4_ret') then
+    
+    playercollider:setPosition(-439.67, -3072.18)
+
+  end
+
+  if playercollider:enter('F2R5') then
+    
+    playercollider:setPosition(-1552, -2912)
+
+  end
+
+
+  if playercollider:enter('F2R5_ret') then
+    
+    playercollider:setPosition(23.67, -3470)
+
+  end
+
+  if playercollider:enter('F2R6') then
+    
+    playercollider:setPosition(-1728, -3392)
+
+  end
+
+
+  if playercollider:enter('F2R6_ret') then
+    
+    playercollider:setPosition(-440.36, -3470)
+
+  end
+
+  -- THIRD FLOOR
+
+  if playercollider:enter('F3') then
+    
+    playercollider:setPosition(-1984, 400)
+
+    sounds.horror:play()
+
+  end
+
+
+  if playercollider:enter('F3_ret') then
+    
+    playercollider:setPosition(416, -3472)
+
+    sounds.horror:stop()
+
+  end
+
+  if playercollider:enter('F3R1') then
+    
+    playercollider:setPosition(-1472, -832)
+
+  end
+
+
+  if playercollider:enter('F3R1_ret') then
+    
+    playercollider:setPosition(-1768, 263)
+
+  end
+
+  if playercollider:enter('F3R2') then
+    
+    playercollider:setPosition(-1856, -832)
+
+  end
+
+
+  if playercollider:enter('F3R2_ret') then
+    
+    playercollider:setPosition(-1895.67, 263)
+
+  end
+
+  if playercollider:enter('F3R3') then
+    
+    playercollider:setPosition(-2528, -832)
+
+  end
+
+
+  if playercollider:enter('F3R3_ret') then
+    
+    playercollider:setPosition(-2072, 263)
+
+  end
+
+  if playercollider:enter('F3R4') then
+    
+    playercollider:setPosition(-2992, -832)
+
+  end
+
+
+  if playercollider:enter('F3R4_ret') then
+    
+    playercollider:setPosition(-2200.33, 263)
+
+  end
+
+  if playercollider:enter('F3R5') then
+    
+    playercollider:setPosition(-1552, -1312)
+
+  end
+
+
+  if playercollider:enter('F3R5_ret') then
+    
+    playercollider:setPosition(-1768.25, 24)
+
+  end
+
+  if playercollider:enter('F3R6') then
+    
+    playercollider:setPosition(-1936, -1312)
+
+  end
+
+
+  if playercollider:enter('F3R6_ret') then
+    
+    playercollider:setPosition(-1895.82, 24)
+
+  end
+
+  if playercollider:enter('F3R7') then
+    
+    playercollider:setPosition(-2336, -1312)
+
+  end
+
+
+  if playercollider:enter('F3R7_ret') then
+    
+    playercollider:setPosition(-2073.50, 24)
+
+  end
+
+  if playercollider:enter('F3R8') then
+    
+    playercollider:setPosition(-2912, -1312)
+
+  end
+
+
+  if playercollider:enter('F3R8_ret') then
+    
+    playercollider:setPosition(-2199.67, 24)
+
+  end
+
+
+  dialogManager:pop()
+
 end
 
-
-
  function test1:draw()
-
 
 
   cam:attach()
