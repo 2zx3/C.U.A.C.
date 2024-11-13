@@ -20,8 +20,6 @@ local test1 = {}
 
 
 
-
-
 local lovepad = require "Extensions/lovepad"
 
 
@@ -30,11 +28,7 @@ local anim8 = require 'Extensions/anim8'
 
 
 
-
-
 lovepad:setGamePad()
-
-
 
 
 
@@ -50,19 +44,11 @@ player = {}
 
 
 
-
-
   wf = require 'windfield'
 
 
 
-
-
-
-
   world = wf.newWorld(0, 0)
-
-
 
 
 
@@ -384,7 +370,7 @@ world:addCollisionClass('F2')
 
 
 
-door = world:newRectangleCollider(-16, -1520, 16, 16)
+door = world:newRectangleCollider(-16, -1520, 32, 16)
 
 
 
@@ -404,7 +390,7 @@ world:addCollisionClass('F2_ret')
 
 
 
-door = world:newRectangleCollider(464, -2656, 32, 16)
+door = world:newRectangleCollider(464, -2656, 16, 32)
 
 
 
@@ -666,7 +652,7 @@ world:addCollisionClass('F3')
 
 
 
-door = world:newRectangleCollider(400, -3504, 16, 16)
+door = world:newRectangleCollider(400, -3504, 32, 16)
 
 
 
@@ -1056,7 +1042,7 @@ local tornTimer2 = 250
 
 local drawit2 = false
 
-local tornpagedos = love.graphics.newImage("24x24/npc2.png")
+local tornpagedos = love.graphics.newImage("24x24/npc1.png")
 
 -- DO NOT TOUCH THIS PLEASE!!!!!
 
@@ -1076,17 +1062,7 @@ local tornpagedos = love.graphics.newImage("24x24/npc2.png")
 
 
 
-
-
-
-
-
-
-function test1:load()
-
-
-
-  sounds = {}
+sounds = {}
 
 
 
@@ -1118,6 +1094,14 @@ function test1:load()
 
   
 
+  walking = false
+
+   bgmusic = 1
+
+
+
+function test1:load()
+
 
 
 lovepad:new{
@@ -1136,7 +1120,7 @@ y = 50,
 
 
 
-radius = 10,
+radius = 30,
 
 
 
@@ -1164,17 +1148,13 @@ function test1:update(dt)
 
 
 
-    local vx = 0
+     vx = 0
 
 
 
-    local vy = 0
+     vy = 0
 
-
-
-   local walking = false
-
-
+   
 
 if showTorn == true then 
 
@@ -1392,8 +1372,6 @@ if lovepad:isDown('Left') then
 
 
 
-
-
   elseif love.keyboard.isDown('left') then
 
 
@@ -1576,17 +1554,29 @@ end
 
 
 
-  if walking == true then
-
-      
+ if walking == true then
 
     sounds.footsteps:play() else
 
+      
+
+    sounds.footsteps:stop()
+
+  end
 
 
-      sounds.footsteps:stop()
 
+ if walking == true and bgmusic == 2 then 
 
+  sounds.footsteps:stop()
+
+  sounds.footsteps:setVolume(0,0)
+
+  sounds.peace:setVolume(0,0)
+
+  sounds.horror:play()
+
+  sounds.footsteps2:play()
 
   end
 
@@ -1663,8 +1653,6 @@ end
 
 
       playercollider:setPosition(-4,-802)
-
-
 
   end
 
@@ -1954,9 +1942,9 @@ end
 
     playercollider:setPosition(-1984, 400)
 
+     bgmusic = 2 
 
-
-    sounds.horror:play()
+     -- sounds.horror:play()
 
 
 
@@ -2289,31 +2277,57 @@ end
       love.graphics.draw(tornpageuno, playerx, playery)
 
     end
+
     
 
     if drawit2 == true and tornTimer2 > 0 then
 
-      love.graphics.draw(tornpagedos, playerx, playery)
+    --  love.graphics.draw(tornpagedos, playerx - 150, playery - 150)
+
+    love.graphics.rectangle("fill", playerx - 50, playery - 50,100,100)
 
       end
 
-    --  world:draw()
+
+
+      world:draw()
+
+
 
   cam:detach()
 
+
+
   lovepad:draw()
+
+
 
   dialogManager:draw()
 
+
+
   love.graphics.print(playerrun)
+
+
 
   love.graphics.print(playerx, 10,10)
 
+
+
   love.graphics.print(playery, 10,20)
+
+  love.graphics.print(pagegot, 10,30)
+
+--  love.graphics.print(bgmusic, 10,40)
+
+
 
   love.graphics.print(playerrun)
 
+
+
  end
 
-return test1
 
+
+return test1
