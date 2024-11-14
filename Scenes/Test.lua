@@ -37,10 +37,9 @@ y = 0
 -- function Scene:titleScene()
 
 function titleScene:load()
-  BG = love.graphics.newImage("Sprites/placeholder(1).jpg") -- change the image name lmao
+  BG = love.graphics.newImage("Special/titlescreenS.png") -- change the image name lmao
   scrnX = lg.getWidth()
   scrnY = lg.getHeight()
-  dimsX, dimsY = lg.getDimensions()
   
 end
 
@@ -111,8 +110,10 @@ function love.keypressed(key)
 end
 
 function titleScene:draw()
+
+   -- love.graphics.draw(BG, 10, 10, 0, 1, 1, 50, -10)
+
   lg.draw(BG)
-  lg.print("See You After Class", dimsX/3.2, dimsY/4, 0, 3, 3)
      local text = "Tap Anywhere to Start"
     local font = love.graphics.getFont()
     local textWidth = font:getWidth(text)
@@ -120,10 +121,10 @@ function titleScene:draw()
     
     love.graphics.push()
     love.graphics.translate(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
-    love.graphics.scale(scale, scale)  
+    love.graphics.scale(0.1, 0.1)  
     love.graphics.printf(text, -textWidth / 2, -textHeight / 2, textWidth, "center")
     love.graphics.pop()
-    lg.print("Game made By: 2zx3 & BURRR-e", dimsX/5.5, 300, 0, 2, 2)
+     
     cam:attach()
     cam:detach()
     lg.setColor(0,0,0)
