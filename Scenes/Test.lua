@@ -37,7 +37,7 @@ y = 0
 -- function Scene:titleScene()
 
 function titleScene:load()
-  BG = love.graphics.newImage("Special/titlescreenS.png") -- change the image name lmao
+  BG = love.graphics.newImage("Special/titlescreenS8.png") -- change the image name lmao
   scrnX = lg.getWidth()
   scrnY = lg.getHeight()
   
@@ -60,7 +60,7 @@ if growing then
             growing = true  -- Switch to growing when fully shrunk
         end
         if delary == true and timery < 0 then
-		 changeScene('gametest')
+		 changeScene('intro')
   	end
 end
 expandAndDisappear()
@@ -105,7 +105,7 @@ function love.touchpressed(id, x, y, dx, dy, pressure)
 
 function love.keypressed(key)
   if key == "escape" then
-     changeScene("gametest")
+     changeScene("intro")
   end
 end
 
