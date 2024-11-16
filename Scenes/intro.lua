@@ -39,7 +39,7 @@ end
 
 function intro:draw()
 
-    lg.draw(introduction, 50, 50, 0, 0.8, 0.8 )
+    lg.draw(introduction, 5, 5, 0, 0.8, 0.8 )
    
 
 end
