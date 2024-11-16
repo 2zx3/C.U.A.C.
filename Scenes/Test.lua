@@ -113,17 +113,7 @@ function titleScene:draw()
 
    -- love.graphics.draw(BG, 10, 10, 0, 1, 1, 50, -10)
 
-  lg.draw(BG)
-     local text = "Tap Anywhere to Start"
-    local font = love.graphics.getFont()
-    local textWidth = font:getWidth(text)
-    local textHeight = font:getHeight(text)
-    
-    love.graphics.push()
-    love.graphics.translate(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
-    love.graphics.scale(0.1, 0.1)  
-    love.graphics.printf(text, -textWidth / 2, -textHeight / 2, textWidth, "center")
-    love.graphics.pop()
+   lg.draw(BG, 5, 5, 0, 0.8, 0.8 )
      
     cam:attach()
     cam:detach()
